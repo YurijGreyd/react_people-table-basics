@@ -7,6 +7,7 @@ type Props = {
   selectedSlug: string;
   nameToSlugMap: Map<string, string>;
 };
+
 const PeopleTable: React.FC<Props> = ({
   people,
   selectedSlug,
@@ -28,9 +29,9 @@ const PeopleTable: React.FC<Props> = ({
         </tr>
       </thead>
       <tbody>
-        {people.map((person, index) => (
+        {people.map(person => (
           <PersonLink
-            key={index}
+            key={person.slug}
             person={person}
             selectedSlug={selectedSlug}
             nameToSlugMap={nameToSlugMap}

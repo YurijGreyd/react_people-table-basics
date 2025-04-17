@@ -1,10 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Person } from '../../types';
+
 type Props = {
   person: Person;
   selectedSlug: string;
   nameToSlugMap: Map<string, string>;
 };
+
 export const PersonLink: React.FC<Props> = ({
   person,
   selectedSlug,
@@ -21,29 +24,29 @@ export const PersonLink: React.FC<Props> = ({
       className={selectedSlug === slug ? 'has-background-warning' : ''}
     >
       <td>
-        <a
-          href={`#/people/${slug}`}
+        <Link
+          to={`/people/${slug}`}
           className={sex === 'f' ? 'has-text-danger' : ''}
         >
           {name}
-        </a>
+        </Link>
       </td>
 
       <td>{sex}</td>
       <td>{born}</td>
       <td>{died}</td>
       <td>
-        {motherSlug ? (
-          <a href={`#/people/${motherSlug}`} className="has-text-danger">
+        {motherName && motherSlug ? (
+          <Link to={`/people/${motherSlug}`} className="has-text-danger">
             {motherName}
-          </a>
+          </Link>
         ) : (
           motherName || '-'
         )}
       </td>
       <td>
-        {fatherSlug ? (
-          <a href={`#/people/${fatherSlug}`}>{fatherName}</a>
+        {fatherName && fatherSlug ? (
+          <Link to={`/people/${fatherSlug}`}>{fatherName}</Link>
         ) : (
           fatherName || '-'
         )}
